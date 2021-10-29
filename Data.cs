@@ -6,6 +6,6 @@ namespace Assignment
     {
         public string Value { get; set; }
 
-        public TimeSpan LastModifiedTime { get; set; }
+        public DateTime LastModifiedTime { get; set; }
     }
 }
