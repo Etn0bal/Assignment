@@ -13,7 +13,7 @@ namespace Assignment {
 
         public void Put(string key, string value)
         {
-            Requests[key] = new Data { Value = value, LastModifiedTime = DateTime.UtcNow};
+            Requests[key] = new Data { Value = value, LastModifiedTime = TransactionCreatedTime};
         }
 
         public string Get(string key)

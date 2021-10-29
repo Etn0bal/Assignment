@@ -102,5 +102,41 @@ namespace Assignment
 
             Transactions.Remove(transactionId);
         }
+
+        public void CommitTransaction(string transactionId)
+        {
+            if(!Transactions.ContainsKey(transactionId))
+            {
+                Console.WriteLine($"Transaction {transactionId} is not found");
+                return;
+            }
+
+            var transaction = Transactions[transactionId];
+
+            if(VerifyCommit(transaction))
+            {
+                foreach(var request in transaction.Requests)
+                {
+                    Put(request.Key, request.Value.Value);
+                }
+            }
+            else 
+            {
+                Console.WriteLine("Failure");
+            }
+
+            Transactions.Remove(transactionId);
+        }
+
+        private bool VerifyCommit(Transaction transaction)
+        {
+            foreach(var request in transaction.Requests)
+            {
+                if(Values.TryGetValue(request.Key, out var value))
+                    if(request.Value.LastModifiedTime < value.LastModifiedTime)
+                        return false;
+            }
+            return true;
+        }
     }
 }
