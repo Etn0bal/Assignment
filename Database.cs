@@ -29,7 +29,7 @@ namespace Assignment
         {
             if(!Values.ContainsKey(key))
             {
-                Console.WriteLine($"Database doesn't contain key {key}");
+                Console.WriteLine($"Couldn't delete {key} because it isn't in the database");
                 return;
             }
 
