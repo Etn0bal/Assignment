@@ -11,7 +11,7 @@ namespace Assignment {
 
         public List<string> ModifiedValues = new List<string>();
 
-        public TimeSpan TransactionCreatedTime { get; set; }
+        public DateTime TransactionCreatedTime { get; set; }
     }
 }
 
